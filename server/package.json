@@ -6,6 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gotrecillo/mean-msi-keyboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gotrecillo/mean-msi-keyboard/issues"
+  },
+  "homepage": "https://github.com/gotrecillo/mean-msi-keyboard#readme",
   "keywords": [
     "rest",
     "javascript",
