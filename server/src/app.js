@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
 // our packages
-import {logger} from './util';
+import { logger } from './util';
 
 // init app
 const app = express();
