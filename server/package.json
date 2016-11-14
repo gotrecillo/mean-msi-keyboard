@@ -1,0 +1,16 @@
+{
+  "name": "msi-keyboard-server",
+  "version": "0.1.0",
+  "description": "msi-keyboard REST backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rest",
+    "javascript",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT"
+}
