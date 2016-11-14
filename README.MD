@@ -1,5 +1,5 @@
-#Application for controlling msi keyboard colors
+# Application for controlling msi keyboard colors
 
-##License
+## License
 
 [MIT](https://opensource.org/licenses/mit-license)
