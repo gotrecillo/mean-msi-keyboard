@@ -10,18 +10,18 @@ import { logger } from './util';
 const app = express();
 
 // setup logging
-app.use(morgan('combined', {stream: logger.stream}));
+app.use(morgan('combined', { stream: logger.stream }));
 
 // add body parsing
 app.use(bodyParser.json()); // parsing application/json
-app.use(bodyParser.urlencoded({extended: true})); // parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true })); // parsing application/x-www-form-urlencoded
 
 // test method
 app.get('/', (req, res) => {
   res.send('Hello world!');
 });
 
-// catch all unhandler errors
+// catch all unhandled errors
 app.use((err, req, res) => {
   logger.error(err.stack);
   res.status(500).send(err);

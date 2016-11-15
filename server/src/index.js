@@ -1,6 +1,6 @@
 // our packages
 import app from './app';
-import {logger} from './util';
+import { logger } from './util';
 
 // start server
 app.listen(8080, function() {
