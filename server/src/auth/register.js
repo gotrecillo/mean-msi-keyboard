@@ -7,8 +7,16 @@ export default (app) => {
     // get user input
     const { username, password, passwordRepeat } = req.body;
 
+    // validate password matching
     if (password !== passwordRepeat) {
       res.status(400).send({ error: 'Passwords do not match!' });
+      return;
+    }
+
+    // check if username is already used
+    const users = await User.filter({ username }).run();
+    if (users.length > 0) {
+      res.status(403).send({ error: 'Username already in use' });
       return;
     }
 
