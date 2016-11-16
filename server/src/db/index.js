@@ -1,0 +1,1 @@
+export thinky from './thinky';
