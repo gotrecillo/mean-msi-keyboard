@@ -1,9 +1,20 @@
 import winston from 'winston';
 
+const getLogLevel = env => {
+  switch (env) {
+    case 'production':
+      return 'info';
+    case 'testing':
+      return 'error';
+    default:
+      return 'debug';
+  }
+};
+
 const logger = new winston.Logger({
   transports: [
     new winston.transports.Console({
-      level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+      level: getLogLevel(process.env.NODE_ENV),
       colorize: true,
       timestamp: true,
       prettyPrint: true,
