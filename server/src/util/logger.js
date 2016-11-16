@@ -1,6 +1,6 @@
 import winston from 'winston';
 
-const getLogLevel = env => {
+const getLogLevel = (env) => {
   switch (env) {
     case 'production':
       return 'info';
