@@ -16,7 +16,7 @@ export default (app) => {
     // check if username is already used
     const users = await User.filter({ username }).run();
     if (users.length > 0) {
-      res.status(403).send({ error: 'Username already in use' });
+      res.status(400).send({ error: 'Username already in use' });
       return;
     }
 
