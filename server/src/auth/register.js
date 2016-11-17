@@ -2,6 +2,12 @@
 import { User } from '../db';
 import { hash, asyncRequest } from '../util';
 
+export const isUsernameTaken = async (username) => {
+  // check if username is already used
+  const users = await User.filter({ username }).run();
+  return users.length > 0;
+};
+
 export default (app) => {
   app.post('/api/register', asyncRequest(async(req, res) => {
     // get user input
@@ -13,9 +19,9 @@ export default (app) => {
       return;
     }
 
-    // check if username is already used
-    const users = await User.filter({ username }).run();
-    if (users.length > 0) {
+    const exists = await isUsernameTaken(username);
+
+    if (exists) {
       res.status(400).send({ error: 'Username already in use' });
       return;
     }
