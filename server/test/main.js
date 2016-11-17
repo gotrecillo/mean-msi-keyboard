@@ -1,37 +1,25 @@
 // npm packages
 import test from 'tape';
-import request from 'supertest';
 
 // our packages
-import app from '../src/app';
+import { thinky } from '../src/db';
 
-test('GET /', t => {
-    request(app)
-      .get('/')
-      .expect(200)
-      .expect('Content-Type', /text\/html/)
-      .end((err, res) => {
-        const expectedBody = 'Hello world!';
-        const actualBody = res.text;
+// tests
+import core from './core';
+import register from './register';
 
-        t.error(err, 'No error');
-        t.equal(actualBody, expectedBody, 'Retrieve body')
-        t.end();
-      })
-  }
-);
+export default (reqlite) => {
+  thinky.dbReady().then(() => {
+    // execute tests
+    core(test);
+    register(test);
 
-test('404 on nonexistant URL', t => {
-  request(app)
-    .get('/SomeDummyUrl')
-    .expect(404)
-    .expect('Content-Type', /text\/html/)
-    .end((err, res) => {
-      const expectedBody = 'Cannot GET /SomeDummyUrl\n';
-      const actualBody = res.text;
 
-      t.error(err, 'No error');
-      t.equal(actualBody, expectedBody, 'Retrieve body')
+    // close db connections
+    test((t) => {
+      setImmediate(() => thinky.r.getPoolMaster().drain());
+      reqlite.stop();
       t.end();
-    })
-});
+    });
+  });
+}
