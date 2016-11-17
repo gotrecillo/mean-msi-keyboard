@@ -17,6 +17,7 @@ export default (test) => {
 
         t.error(err, 'No error');
         t.deepEqual(actualBody, expectedBody, 'Retrieve user');
+        t.notOk(actualBody.password, 'No password includes');
         t.end();
       });
   });
@@ -33,6 +34,7 @@ export default (test) => {
 
         t.error(err, 'No error');
         t.deepEqual(actualBody, expectedBody, 'Retrieve user');
+        t.notOk(actualBody.password, 'No password includes');
         t.end();
       });
   });

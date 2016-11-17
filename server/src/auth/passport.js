@@ -14,7 +14,9 @@ passport.deserializeUser(async (id, done) => {
   let user = null;
 
   try {
-    user = await User.get(id).run();
+    user = await User.get(id)
+      .without(['password'])
+      .execute();
   } catch (e) {
     done(e, false);
     return;
@@ -26,7 +28,12 @@ passport.deserializeUser(async (id, done) => {
 // use LocalStrategy
 passport.use(new LocalStrategy(async (username, password, done) => {
   // find all users with matching login
-  const users = await User.filter({ username }).limit(1).run();
+  let users = [];
+  try {
+    users = await User.filter({ username }).limit(1).run();
+  } catch (e) {
+    return done(e, false);
+  }
   // get the first match
   const user = users[0];
   // check if exists
@@ -38,6 +45,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     return done(null, false);
   }
   // return user if successful
+  delete user.password;
   return done(null, user);
 }));
 
@@ -48,7 +56,14 @@ const jwtOptions = {
 };
 
 passport.use(new JwtStrategy(jwtOptions, async (payload, done) => {
-  const user = await User.get(payload.id);
+  let user;
+  try {
+    user = await User.get(payload.id)
+      .without(['password'])
+      .execute();
+  } catch (e) {
+    return done(e, false);
+  }
 
   // check if exists
   if (!user) {

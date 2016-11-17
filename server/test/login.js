@@ -22,6 +22,7 @@ export default (test) => {
         t.ok(actualBody.user, 'User exists');
         t.ok(actualBody.token, 'Token exists');
         t.equal(actualBody.user.username, 'foo', 'Username matches request');
+        t.notOk(actualBody.user.password, 'No password includes');
         t.deepEqual(actualBody.user, decodedUser, 'User must match token');
 
         // we set the token and the user for the next tests
