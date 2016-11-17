@@ -23,6 +23,9 @@ export default (test) => {
         t.ok(actualBody.token, 'Token exists');
         t.equal(actualBody.user.username, 'foo', 'Username matches request');
         t.deepEqual(actualBody.user, decodedUser, 'User must match token');
+
+        app.set('token', actualBody.token); // we set the token for the next tests
+
         t.end();
       })
   });
