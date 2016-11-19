@@ -1,8 +1,19 @@
 // our packages
-import { validateColor, validateMode, keyboardColors, keyboardModes, keyboardIntensities } from '../src/validations';
+import {
+  validateColor,
+  validateMode,
+  validateColors,
+  keyboardColors,
+  keyboardModes,
+  keyboardIntensities,
+  keyboardRegions,
+  defaultKeyboard
+} from '../src/validations';
 
 export default (test) => {
   test('Keyboard Colors and Modes Validation', t => {
+    const defaultColors = defaultKeyboard.colors;
+
     t.equal(
       validateColor({ color: 'foo', intensity: keyboardIntensities[0]}),
       false,
@@ -49,6 +60,25 @@ export default (test) => {
       validateMode(keyboardModes[0]),
       true,
       'Mode is present in the predefined ones'
+    );
+
+    t.equal(
+      validateColors(defaultColors),
+      true,
+      'All regions are present and are valid'
+    );
+
+    t.equal(
+      validateColors(Object.assign({}, defaultColors, { [keyboardRegions[0]] : {} })),
+      false,
+      'All regions are present and first region is invalid'
+    );
+
+    delete defaultColors[keyboardRegions[0]];
+    t.equal(
+      validateColors(defaultColors),
+      false,
+      'First region is missing'
     );
 
     t.end();

@@ -1,9 +1,9 @@
 export const keyboardColors = [
-  'black',
+  'green',
   'red',
   'orange',
   'yellow',
-  'green',
+  'black',
   'cyan',
   'blue',
   'purple',
@@ -11,9 +11,29 @@ export const keyboardColors = [
 ];
 
 export const keyboardIntensities = [
-  'light', 'low', 'med', 'high',
+  'high', 'light', 'low', 'med',
 ];
 
 export const keyboardModes = [
-  'breathe', 'wave', 'normal',
+  'normal', 'breathe', 'wave',
 ];
+
+export const keyboardRegions = [
+  'left', 'center', 'right',
+];
+
+export const defaultKeyboard = {
+  name: 'Default',
+  colors: {
+    left: {
+      color: keyboardColors[0], intensity: keyboardIntensities[0],
+    },
+    center: {
+      color: keyboardColors[0], intensity: keyboardIntensities[0],
+    },
+    right: {
+      color: keyboardColors[0], intensity: keyboardIntensities[0],
+    },
+  },
+  mode: keyboardModes[0],
+};

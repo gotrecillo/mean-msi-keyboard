@@ -1,2 +1,2 @@
-export { keyboardColors, keyboardIntensities, keyboardModes } from './constants';
-export { validateColor, validateMode } from './keyboardModes';
+export { keyboardColors, keyboardIntensities, keyboardModes, keyboardRegions, defaultKeyboard } from './constants';
+export { validateColor, validateColors, validateMode } from './keyboardModes';
