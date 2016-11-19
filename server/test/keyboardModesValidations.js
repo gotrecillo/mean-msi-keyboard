@@ -74,9 +74,10 @@ export default (test) => {
       'All regions are present and first region is invalid'
     );
 
-    delete defaultColors[keyboardRegions[0]];
+    const clonedColors = Object.assign({}, defaultColors);
+    delete clonedColors[keyboardRegions[0]];
     t.equal(
-      validateColors(defaultColors),
+      validateColors(clonedColors),
       false,
       'First region is missing'
     );
