@@ -6,7 +6,7 @@ export const validateColor = color => !!(
   color.color && keyboardColors.includes(color.color)
 );
 
-export const validateColors = colors => keyboardRegions.every(region => validateColor(colors[region]));
+export const validateColors = colors => !!(colors && keyboardRegions.every(region => validateColor(colors[region])));
 
 export const validateMode = mode => keyboardModes.includes(mode);
 

@@ -63,6 +63,12 @@ export default (test) => {
     );
 
     t.equal(
+      validateColors(),
+      false,
+      'We dont pass arguments'
+    );
+
+    t.equal(
       validateColors(defaultColors),
       true,
       'All regions are present and are valid'
