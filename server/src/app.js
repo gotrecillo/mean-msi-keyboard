@@ -11,6 +11,7 @@ import { logger } from './util';
 import { auth as authConfig } from '../config';
 import setupAuthRoutes from './auth';
 import setupUserRoutes from './user';
+import setupKeyboardModeRoutes from './keyboardMode';
 
 // init app
 const app = express();
@@ -40,6 +41,7 @@ app.use(passport.session());
 // setup routes
 setupAuthRoutes(app);
 setupUserRoutes(app);
+setupKeyboardModeRoutes(app);
 
 // test method
 app.get('/', (req, res) => {
