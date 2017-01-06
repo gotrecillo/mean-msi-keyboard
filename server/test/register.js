@@ -19,7 +19,7 @@ export default (test) => {
   test('Should register another user with a different username', t => {
     request(app)
       .post('/api/register')
-      .send({ username: 'bar', password: 'pass', passwordRepeat: 'pass'})
+      .send({ username: 'bar', password: 'pass', passwordRepeat: 'pass' })
       .expect(201)
       .end(err => {
         t.error(err, 'No error');
@@ -45,10 +45,10 @@ export default (test) => {
   test('Should fail to register an user with mismatching passwords', t => {
     request(app)
       .post('/api/register')
-      .send({ username: 'baz', password: 'pass', passwordRepeat: 'password'})
+      .send({ username: 'baz', password: 'pass', passwordRepeat: 'password' })
       .expect(400)
       .end((err, res) => {
-        const expectedBody = { error: 'Passwords do not match!'};
+        const expectedBody = { error: 'Passwords do not match!' };
         const actualBody = res.body;
 
         t.error(err, 'No error');
@@ -60,10 +60,10 @@ export default (test) => {
   test('Should not check if the username is already in use with mismatching passwords', t => {
     request(app)
       .post('/api/register')
-      .send({ username: 'foo', password: 'pass', passwordRepeat: 'password'})
+      .send({ username: 'foo', password: 'pass', passwordRepeat: 'password' })
       .expect(400)
       .end((err, res) => {
-        const expectedBody = { error: 'Passwords do not match!'};
+        const expectedBody = { error: 'Passwords do not match!' };
         const actualBody = res.body;
 
         t.error(err, 'No error');

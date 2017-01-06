@@ -15,31 +15,31 @@ export default (test) => {
     const defaultColors = defaultKeyboard.colors;
 
     t.equal(
-      validateColor({ color: 'foo', intensity: keyboardIntensities[0]}),
+      validateColor({ color: 'foo', intensity: keyboardIntensities[0] }),
       false,
       'Color is not present in the predefined ones'
     );
 
     t.equal(
-      validateColor({ color: keyboardColors[0], intensity: 'foo'}),
+      validateColor({ color: keyboardColors[0], intensity: 'foo' }),
       false,
       'Intensity is not present in the predefined ones'
     );
 
     t.equal(
-      validateColor({ color: keyboardColors[0], intensity: keyboardIntensities[0]}),
+      validateColor({ color: keyboardColors[0], intensity: keyboardIntensities[0] }),
       true,
       'Color and intensity are in the predefined ones'
     );
 
     t.equal(
-      validateColor({ color: keyboardColors[0]}),
+      validateColor({ color: keyboardColors[0] }),
       false,
       'Intensity key is not present'
     );
 
     t.equal(
-      validateColor({ intensity: keyboardIntensities[0]}),
+      validateColor({ intensity: keyboardIntensities[0] }),
       false,
       'Color key is not present'
     );
@@ -75,7 +75,7 @@ export default (test) => {
     );
 
     t.equal(
-      validateColors(Object.assign({}, defaultColors, { [keyboardRegions[0]] : {} })),
+      validateColors(Object.assign({}, defaultColors, { [keyboardRegions[0]]: {} })),
       false,
       'All regions are present and first region is invalid'
     );

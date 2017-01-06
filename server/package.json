@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "eslint src/ && node test/index.js | tap-spec",
-    "db:start": "docker run -d -p 28015:28015 -p 8090:8080 -v $PWD/db:/data --name msikeyboard rethinkdb",
+    "db:start": "docker run -d -p 28015:28015 -p 8070:8080 -v $PWD/db:/data --name msikeyboard rethinkdb",
     "db:stop": "docker stop msikeyboard",
     "db:rm": "docker rm msikeyboard"
   },
